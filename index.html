@@ -1,33 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pra você 💞</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pra você 💕</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <audio autoplay loop>
-    <source src="love-song.mp3" type="audio/mpeg">
-  </audio>
+    <audio autoplay loop>
+        <source src="love-song.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
 
-  <div class="scene">
-    <img src="char.png" alt="personagem" class="char">
-    <div class="heart-grid"></div>
-    <div class="hearts-left"></div>
-    <div class="hearts-right"></div>
-  </div>
+    <div class="scene glow-effect">
+        <img src="char.png" alt="personagem" class="char">
+        
+        <div class="hearts-left"></div>
+        <div class="hearts-right"></div>
+    </div>
 
-  <h1 class="message">Cada pedacinho do meu coração é seu 💘</h1>
+    <h1 class="message glow-text">Cada pedacinho do meu coração é seu 💖</h1>
 
-  <button id="surpriseButton">Clique aqui 💞</button>
+    <button id="surpriseButton" class="glow-button">Clique aqui ✨</button>
 
-  <div class="final-message" id="finalMessage">
-    <p>Te amo mais do que todos esses corações juntos 💌</p>
-    <p>Obrigado por ser meu amor. 🌙✨</p>
-  </div>
+    <div class="final-message glow-text" id="finalMessage">
+        <p>Te amo mais do que todos esses corações juntos 💌</p>
+        <p>Obrigado por ser meu amor. 💖🌙✨</p>
+    </div>
 
-  <script src="script.js"></script>
+    <div class="transition-glitch" id="glitchTransition">
+        <p class="glitch-text">Carregando surpresa... 🐛</p>
+    </div>
+
+    <div class="secret-area" id="secretArea">
+        <h2 class="secret-title glow-text">Nosso Tesouro Secreto 🔐</h2>
+        
+        <div class="photo-container">
+            <img src="nossa_foto.png" alt="Nossa foto especial" class="secret-photo">
+        </div>
+
+        <p class="secret-text glow-text">"Cada segundo ao seu lado é o meu momento favorito. Essa foto me lembra do quão mágico foi o início, e me enche de esperança para o infinito que ainda vamos viver. Te amo!"</p>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,171 +1,268 @@
+/* Importação das fontes */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap'); /* Para o texto de glitch */
+
+/* CORREÇÃO: Habilitar Scroll e Ajustar Alinhamento */
 body {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(180deg, #fff0f5, #ffe6f9);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
-  font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px; /* Adicionado padding para o scroll */
+    background: radial-gradient(circle at center, #fffafa, #ffe6f9 90%);
+    box-shadow: 0 0 100px 30px rgba(255, 192, 203, 0.5) inset; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Permite que o conteúdo vá para o topo e use o scroll */
+    align-items: center;
+    min-height: 100vh;
+    overflow-y: auto; /* ESSENCIAL para a barra de rolagem */
+    font-family: 'Pacifico', cursive, sans-serif;
+    position: relative;
+    transition: background-color 0.3s ease;
 }
 
+/* Efeito de brilho genérico para texto e títulos */
+.glow-text {
+    text-shadow: 0 0 8px rgba(255, 105, 180, 0.8), 0 0 15px rgba(255, 105, 180, 0.4);
+}
+
+/* Estilo do container principal (o "palco" da cena) */
 .scene {
-  position: relative;
-  width: 320px;
-  height: 240px;
-  background: radial-gradient(circle at bottom, #ffd1dc, #fff0f5 80%);
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(255, 100, 150, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  overflow: hidden;
+    position: relative;
+    width: 320px;
+    height: 240px;
+    background: radial-gradient(circle at bottom, #ffc0cb, #fff0f5 80%);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.6), 0 0 5px rgba(255, 105, 180, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
 }
 
-/* Personagem */
+/* Estilo e animação de flutuação para o personagem */
 .char {
-  width: 110px;
-  position: absolute;
-  bottom: 0;
-  animation: float 3s ease-in-out infinite alternate;
-  filter: drop-shadow(0 0 6px rgba(255, 150, 200, 0.6));
+    width: 130px;
+    position: absolute;
+    bottom: 0;
+    animation: float 3s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 10px rgba(255, 180, 200, 1));
 }
 
 @keyframes float {
-  from { transform: translateY(0); }
-  to { transform: translateY(-10px); }
+    from { transform: translateY(0); }
+    to { transform: translateY(-12px); }
 }
 
-/* Grade de corações formando um coração maior */
-.heart-grid {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: grid;
-  grid-template-columns: repeat(7, 30px);
-  grid-gap: 5px;
-}
-
-.heart-grid div {
-  width: 25px;
-  height: 25px;
-  background: url("heart.png") no-repeat center;
-  background-size: contain;
-  opacity: 0;
-  animation: appear 2s forwards;
-}
-
-@keyframes appear {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-/* Aqui está o formato do coração via posicionamento manual */
-.heart-grid div:nth-child(1),
-.heart-grid div:nth-child(7),
-.heart-grid div:nth-child(8),
-.heart-grid div:nth-child(14),
-.heart-grid div:nth-child(15),
-.heart-grid div:nth-child(16),
-.heart-grid div:nth-child(17),
-.heart-grid div:nth-child(18),
-.heart-grid div:nth-child(19),
-.heart-grid div:nth-child(21),
-.heart-grid div:nth-child(22),
-.heart-grid div:nth-child(23),
-.heart-grid div:nth-child(24),
-.heart-grid div:nth-child(25),
-.heart-grid div:nth-child(26),
-.heart-grid div:nth-child(27),
-.heart-grid div:nth-child(28),
-.heart-grid div:nth-child(29),
-.heart-grid div:nth-child(30),
-.heart-grid div:nth-child(31),
-.heart-grid div:nth-child(32),
-.heart-grid div:nth-child(33),
-.heart-grid div:nth-child(34),
-.heart-grid div:nth-child(35),
-.heart-grid div:nth-child(36),
-.heart-grid div:nth-child(37),
-.heart-grid div:nth-child(38),
-.heart-grid div:nth-child(39),
-.heart-grid div:nth-child(40),
-.heart-grid div:nth-child(41),
-.heart-grid div:nth-child(42),
-.heart-grid div:nth-child(43),
-.heart-grid div:nth-child(44),
-.heart-grid div:nth-child(45),
-.heart-grid div:nth-child(46),
-.heart-grid div:nth-child(47),
-.heart-grid div:nth-child(48),
-.heart-grid div:nth-child(49) {
-  opacity: 1;
-}
-
-/* Animação dos corações que voam */
+/* Estilo dos corações voadores (usando emoji) */
 .heart {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  background: url("heart.png") no-repeat center;
-  background-size: contain;
-  animation: fly 2.5s ease-out forwards;
-  filter: drop-shadow(0 0 8px rgba(255, 0, 100, 0.7));
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: none;
+    animation: fly 2.5s ease-out forwards;
+    filter: drop-shadow(0 0 10px rgba(255, 50, 150, 0.8));
+}
+
+.heart::before {
+    content: '💖'; /* Emoji de coração fofo */
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 28px;
+    line-height: 1;
+    transform: scale(0.9);
 }
 
 @keyframes fly {
-  0% { transform: translate(0, 0) scale(0.8); opacity: 1; }
-  50% { transform: translate(80px, -80px) scale(1.2); }
-  100% { transform: translate(160px, -160px) scale(0.8); opacity: 0; }
+    0% { transform: translate(0, 0) scale(0.8); opacity: 1; }
+    50% { transform: translate(90px, -90px) scale(1.1); }
+    100% { transform: translate(180px, -180px) scale(0.7); opacity: 0; }
 }
 
-/* Mensagem e botão */
+/* Estilo da mensagem principal */
 .message {
-  opacity: 0;
-  font-size: 1.4rem;
-  text-align: center;
-  color: #ff007f;
-  margin-top: 30px;
-  animation: fadeIn 3s ease-in-out forwards;
-  animation-delay: 2s;
+    opacity: 0;
+    font-size: 1.8rem;
+    text-align: center;
+    color: #ff007f;
+    margin-top: 40px;
+    animation: fadeIn 3s ease-in-out forwards;
+    animation-delay: 2s;
+    line-height: 1.2;
 }
 
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
+/* Estilo e efeito GLOW do botão */
 #surpriseButton {
-  background-color: #ff66a3;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s, transform 0.3s;
+    background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 40px;
+    font-size: 1.2rem;
+    font-family: 'Pacifico', cursive;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.9), 0 0 25px rgba(255, 105, 180, 0.6);
 }
 
 #surpriseButton:hover {
-  background-color: #ff3385;
-  transform: scale(1.05);
+    background: linear-gradient(45deg, #ffb6c1, #ff69b4);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 105, 180, 1), 0 0 35px rgba(255, 105, 180, 0.8);
 }
 
-/* Mensagem final */
+/* Estilo da mensagem final */
 .final-message {
-  display: none;
-  text-align: center;
-  color: #ff007f;
-  font-size: 1.3rem;
-  margin-top: 20px;
-  opacity: 0;
-  animation: fadeUp 2s ease forwards;
+    display: none;
+    text-align: center;
+    color: #ff007f;
+    font-size: 1.6rem;
+    margin-top: 30px;
+    opacity: 0;
+    animation: fadeUp 2s ease forwards;
+    line-height: 1.5;
+}
+
+/* ESTILO DA TELA DE TRANSIÇÃO (GLITCH) */
+.transition-glitch {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color: #0f0; /* Texto verde neon */
+    font-family: 'VT323', monospace; /* Fonte estilo terminal */
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0; 
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.transition-glitch.active {
+    opacity: 1; /* Torna visível */
+    pointer-events: all;
+}
+
+.glitch-text {
+    position: relative;
+    animation: glitch 1s infinite linear alternate-reverse;
+}
+
+/* Animação de Glitch (CSS) */
+@keyframes glitch {
+    0% {
+        text-shadow: 0.05em 0 0 #f00, -0.05em -0.025em 0 #0ff, -0.025em 0.05em 0 #ff0;
+        transform: translate(0.025em, 0.025em);
+    }
+    14% {
+        text-shadow: 0.05em 0 0 #f00, -0.05em -0.025em 0 #0ff, -0.025em 0.05em 0 #ff0;
+        transform: translate(0.025em, 0.025em);
+    }
+    15% {
+        text-shadow: none;
+        transform: none;
+    }
+    16% {
+        text-shadow: -0.05em -0.025em 0 #f00, 0.025em 0.025em 0 #0ff, -0.05em -0.05em 0 #ff0;
+        transform: translate(-0.025em, -0.025em);
+    }
+    19% {
+        text-shadow: -0.05em -0.025em 0 #f00, 0.025em 0.025em 0 #0ff, -0.05em -0.05em 0 #ff0;
+        transform: translate(-0.025em, -0.025em);
+    }
+    20% {
+        text-shadow: none;
+        transform: none;
+    }
+    21% {
+        text-shadow: 0.05em 0 0 #f00, -0.05em -0.025em 0 #0ff, 0.025em 0.05em 0 #ff0;
+        transform: translate(0.025em, 0.025em);
+    }
+    24% {
+        text-shadow: 0.05em 0 0 #f00, -0.05em -0.025em 0 #0ff, 0.025em 0.05em 0 #ff0;
+        transform: translate(0.025em, 0.025em);
+    }
+    25% {
+        text-shadow: none;
+        transform: none;
+    }
+    100% {
+        text-shadow: none;
+        transform: none;
+    }
+}
+
+
+/* ESTILIZAÇÃO DA ÁREA SECRETA */
+.secret-area {
+    display: none;
+    text-align: center;
+    color: #ff007f;
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    opacity: 0;
+    transform: scale(0.8);
+    animation: zoomIn 1s ease-out forwards;
+    animation-delay: 0s;
+    max-width: 90%; 
+    box-sizing: border-box; 
+    margin-bottom: 50px; /* Adiciona espaço abaixo para o scroll funcionar bem */
+}
+
+.secret-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.secret-text {
+    font-size: 1.1rem;
+    padding: 0 10px;
+    max-width: 450px; 
+    margin: 20px auto 0;
+    line-height: 1.4; 
+    word-wrap: break-word; 
+}
+
+.photo-container {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%; 
+    margin: 0 auto;
+    border: 5px solid #ffc0cb;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+}
+
+.secret-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+}
+
+.secret-photo:hover {
+    transform: scale(1.1);
+}
+
+/* Animações */
+@keyframes fadeIn {
+    to { opacity: 1; }
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+    to { opacity: 1; transform: scale(1); }
 }
