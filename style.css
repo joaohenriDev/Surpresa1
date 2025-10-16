@@ -1,0 +1,171 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, #fff0f5, #ffe6f9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+.scene {
+  position: relative;
+  width: 320px;
+  height: 240px;
+  background: radial-gradient(circle at bottom, #ffd1dc, #fff0f5 80%);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 100, 150, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  overflow: hidden;
+}
+
+/* Personagem */
+.char {
+  width: 110px;
+  position: absolute;
+  bottom: 0;
+  animation: float 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 6px rgba(255, 150, 200, 0.6));
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
+/* Grade de corações formando um coração maior */
+.heart-grid {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(7, 30px);
+  grid-gap: 5px;
+}
+
+.heart-grid div {
+  width: 25px;
+  height: 25px;
+  background: url("heart.png") no-repeat center;
+  background-size: contain;
+  opacity: 0;
+  animation: appear 2s forwards;
+}
+
+@keyframes appear {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Aqui está o formato do coração via posicionamento manual */
+.heart-grid div:nth-child(1),
+.heart-grid div:nth-child(7),
+.heart-grid div:nth-child(8),
+.heart-grid div:nth-child(14),
+.heart-grid div:nth-child(15),
+.heart-grid div:nth-child(16),
+.heart-grid div:nth-child(17),
+.heart-grid div:nth-child(18),
+.heart-grid div:nth-child(19),
+.heart-grid div:nth-child(21),
+.heart-grid div:nth-child(22),
+.heart-grid div:nth-child(23),
+.heart-grid div:nth-child(24),
+.heart-grid div:nth-child(25),
+.heart-grid div:nth-child(26),
+.heart-grid div:nth-child(27),
+.heart-grid div:nth-child(28),
+.heart-grid div:nth-child(29),
+.heart-grid div:nth-child(30),
+.heart-grid div:nth-child(31),
+.heart-grid div:nth-child(32),
+.heart-grid div:nth-child(33),
+.heart-grid div:nth-child(34),
+.heart-grid div:nth-child(35),
+.heart-grid div:nth-child(36),
+.heart-grid div:nth-child(37),
+.heart-grid div:nth-child(38),
+.heart-grid div:nth-child(39),
+.heart-grid div:nth-child(40),
+.heart-grid div:nth-child(41),
+.heart-grid div:nth-child(42),
+.heart-grid div:nth-child(43),
+.heart-grid div:nth-child(44),
+.heart-grid div:nth-child(45),
+.heart-grid div:nth-child(46),
+.heart-grid div:nth-child(47),
+.heart-grid div:nth-child(48),
+.heart-grid div:nth-child(49) {
+  opacity: 1;
+}
+
+/* Animação dos corações que voam */
+.heart {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: url("heart.png") no-repeat center;
+  background-size: contain;
+  animation: fly 2.5s ease-out forwards;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 100, 0.7));
+}
+
+@keyframes fly {
+  0% { transform: translate(0, 0) scale(0.8); opacity: 1; }
+  50% { transform: translate(80px, -80px) scale(1.2); }
+  100% { transform: translate(160px, -160px) scale(0.8); opacity: 0; }
+}
+
+/* Mensagem e botão */
+.message {
+  opacity: 0;
+  font-size: 1.4rem;
+  text-align: center;
+  color: #ff007f;
+  margin-top: 30px;
+  animation: fadeIn 3s ease-in-out forwards;
+  animation-delay: 2s;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+#surpriseButton {
+  background-color: #ff66a3;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#surpriseButton:hover {
+  background-color: #ff3385;
+  transform: scale(1.05);
+}
+
+/* Mensagem final */
+.final-message {
+  display: none;
+  text-align: center;
+  color: #ff007f;
+  font-size: 1.3rem;
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeUp 2s ease forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
