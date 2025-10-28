@@ -1,119 +1,191 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pra você: Amor Mariano 👑</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
-    
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pra você: Amor Mariano 👑</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <audio autoplay loop>
-        <source src="love-song.mp3" type="audio/mpeg">
-        Seu navegador não suporta o elemento de áudio.
-    </audio>
+    <audio autoplay loop>
+        <source src="love-song.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
 
-    <div class="scene glow-effect">
-                <img src="char.png" alt="personagem" class="char">
-        
-        <div class="hearts-left"></div>
-        <div class="hearts-right"></div>
-    </div>
+    <div class="scene glow-effect">
+        <img src="char.png" alt="personagem" class="char">
+        
+        <div class="hearts-left"></div>
+        <div class="hearts-right"></div>
+    </div>
 
-    <h1 class="message glow-text">Cada pedacinho do meu coração é seu 💖</h1>
+    <h1 class="message glow-text">Cada pedacinho do meu coração é seu 💖</h1>
 
-    <button id="surpriseButton" class="glow-button">Clique aqui ✨</button>
+    <button id="surpriseButton" class="glow-button">Clique aqui ✨</button>
 
-    <div class="final-message glow-text" id="finalMessage">
-        <p>Te amo mais do que todos esses corações juntos 💌</p>
-        <p>Obrigado por ser meu amor. 💖🌙✨</p>
-    </div>
+    <div class="final-message glow-text" id="finalMessage">
+        <p>Te amo mais do que todos esses corações juntos 💌</p>
+        <p>Obrigado por ser meu amor. 💖🌙✨</p>
+    </div>
 
-    <div class="transition-glitch" id="glitchTransition">
-        <p class="glitch-text">Carregando surpresa... 🐛</p>
-    </div>
+    <div class="transition-glitch" id="glitchTransition">
+        <p class="glitch-text">Carregando surpresa... 🐛</p>
+    </div>
 
-    <div class="secret-area" id="secretArea">
-        <h2 class="secret-title glow-text">Nosso Tesouro Secreto 🔐</h2>
-        
-        <div class="photo-container">
-                        <img src="nossa_foto.png" alt="Nossa foto especial" class="secret-photo">
-        </div>
+    <div class="secret-area" id="secretArea">
+        <h2 class="secret-title glow-text">Nosso Tesouro Secreto 🔐</h2>
+        
+        <div class="photo-container">
+            <img src="nossa_foto.png" alt="Nossa foto especial" class="secret-photo">
+        </div>
 
-        <p class="secret-text glow-text">"Cada segundo ao seu lado é o meu momento favorito. Essa foto me lembra do quão mágico foi o início, e me enche de esperança para o infinito que ainda vamos viver. Te amo!"</p>
-        
-        <div class="secret-buttons-container">
-            <button id="openPrayersButton" class="glow-button small-button">Nossas Orações 🕊️</button>
-            <button class="glow-button small-button">Outra Surpresa 🎉</button>
-        </div>
+        <p class="secret-text glow-text">"Cada segundo ao seu lado é o meu momento favorito. Essa foto me lembra do quão mágico foi o início, e me enche de esperança para o infinito que ainda vamos viver. Te amo!"</p>
+        
+        <div class="secret-buttons-container">
+            <button id="openPrayersButton" class="glow-button small-button">Nossas Orações 🕊️</button>
+            
+            <button id="openSurpriseBoxButton" class="glow-button small-button">Caixinha de Surpresas 🎁</button>
+        </div>
+        
+        <div id="surpriseBoxArea" class="prayers-area">
+            <h3>Escolha um Mimo ✨</h3>
+            
+            <div id="surpriseCardsContainer">
+                
+                <div class="surprise-card" data-box-id="triste">
+                    <h4>Quando estiver triste 🥺</h4>
+                    <p>Abra para uma dose de carinho.</p>
+                </div>
 
-                <div id="prayersArea" class="prayers-area">
-            <h3>Juntos em Oração 🙏</h3>
+                <div class="surprise-card" data-box-id="sorrir">
+                    <h4>Quando quiser sorrir 😂</h4>
+                    <p>Uma coleção de loucuras minhas</p>
+                </div>
+                
+                <div class="surprise-card" data-box-id="historia">
+                    <h4>Uma história bonita 🌙</h4>
+                    <p>Uma historia para uma leitora</p>
+                </div>
 
-            <div class="tabs-container">
-                <button class="tab-button active" data-tab="prayers-list">Nossas Orações 📖</button>
-                <button class="tab-button" data-tab="roses-counter">Campo de Rosas 🌹</button>
-                <button class="tab-button" data-tab="intentions">Intenções 🕯️</button>
-            </div>
+                <div class="surprise-card" data-box-id="motivar">
+                    <h4>Algo para se motivar 💪</h4>
+                    <p>Quando não tiver tão animada</p>
+                </div>
 
-                        <div id="prayers-list" class="tab-content active">
-                <h4>Orações que devemos fazer:</h4>
-                <ul id="prayersListContainer" class="prayer-list">
-                    <li>Santo Terço</li>
-                    <li>Coroinha de Nossa Senhora</li>
-                    <li>Lenho da Cruz</li>
-                </ul>
-                
-                                <div class="add-intention-container">
-                    <input type="text" id="newPrayerInput" placeholder="Adicionar nova oração para fazermos..." maxlength="50">
-                    <button id="addPrayerButton" class="count-button">Adicionar</button>
-                </div>
-            </div>
+                <div class="surprise-card" data-box-id="saudade">
+                    <h4>Quando sentir saudade</h4>
+                    <p>Quando tiver com muita vontade de me ver</p>
+                </div>
+                <div class="surprise-card" data-box-id="memoria">
+                    <h4>Memória congelada</h4>
+                    <p>Um momento só nosso</p>
+                </div>
+                <div class="surprise-card" data-box-id="pensamentos">
+                    <h4>Quando pensar demais</h4>
+                    <p>Quando a loucura de pensamentos vier</p>
+                </div>
+                <div class="surprise-card" data-box-id="danca">
+                    <h4>Quando quiser dançar</h4>
+                    <p>O que será que eu preparei aqui em</p>
+                </div>
+                <div class="surprise-card" data-box-id="carinho">
+                    <h4>Quando sentir falta de carinho</h4>
+                    <p>Quando quiser aquele carinho mesmo quando não estiver perto</p>
+                </div>
+                <div class="surprise-card" data-box-id="mim">
+                    <h4>Quando sentir que precisa de mim</h4>
+                    <p>O que será que eu preparei aqui em</p>
+                </div>
+                <div class="surprise-card" data-box-id="fofo">
+                    <h4>Quando quiser algo fofo</h4>
+                    <p>Para derreter seu coração</p>
+                </div>
+                <div class="surprise-card" data-box-id="seu">
+                    <h4>Quando quiser um momento só seu</h4>
+                    <p>Seu momento</p>
+                </div>
+                
+                </div>
+            
+            <div id="boxContent" class="hidden-content">
+                </div>
+            
+        </div>
+        
+        <div id="prayersArea" class="prayers-area">
+            <h3>Juntos em Oração 🙏</h3>
 
-                        <div id="roses-counter" class="tab-content">
-                <h4>Rosas oferecidas à Maria (Hoje)</h4>
+            <div class="tabs-container">
+                <button class="tab-button active" data-tab="prayers-list">Nossas Orações 📖</button>
+                <button class="tab-button" data-tab="roses-counter">Campo de Rosas 🌹</button>
+                <button class="tab-button" data-tab="intentions">Intenções 🕯️</button>
+            </div>
 
-                                <p class="secret-text" style="color:#4169e1; font-family:sans-serif; font-size: 0.9rem; margin-bottom: 25px;">
-                    **Intenção Mariana:** *Cada vez que fazemos uma oração juntos ou separados, clicamos para enviar a Nossa Senhora a nossa Rosa. Essas rosas são contadas aqui, subindo como perfume ao céu, mostrando o nosso amor por Ela e um pelo outro.*
-                </p>
+            <div id="prayers-list" class="tab-content active">
+                <h4>Orações que devemos fazer:</h4>
+                <ul id="prayersListContainer" class="prayer-list">
+                    <li>Santo Terço</li>
+                    <li>Coroinha de Nossa Senhora</li>
+                    <li>Lenho da Cruz</li>
+                </ul>
+                
+                <div class="add-intention-container">
+                    <input type="text" id="newPrayerInput" placeholder="Adicionar nova oração para fazermos..." maxlength="50">
+                    <button id="addPrayerButton" class="count-button">Adicionar</button>
+                </div>
+            </div>
 
-                <div class="counter-container">
-                    <div class="counter-box">
-                        <span>João:</span> <span id="joaoCount" class="count-number">0</span>
-                        <button class="count-button" data-person="joao">Rezei!</button>
-                    </div>
-                    <div class="counter-box">
-                        <span>Vitória:</span> <span id="vitoriaCount" class="count-number">0</span>
-                        <button class="count-button" data-person="vitoria">Rezei!</button>
-                    </div>
-                </div>
-                
-                                <div id="rosesDisplay" class="total-roses" style="text-align:center; margin-top:30px;">
-                    Total de Rosas: <span id="totalRoses">0</span> 
-                    <div id="roseIcons" style="margin-top:10px;"></div>
-                </div>
+            <div id="roses-counter" class="tab-content">
+                <h4>Rosas oferecidas à Maria (Hoje)</h4>
 
-            </div>
+                <p class="secret-text" style="color:#4169e1; font-family:sans-serif; font-size: 0.9rem; margin-bottom: 25px;">
+                    Intenção Mariana: Cada vez que oramos — juntos ou separados — oferecemos a Nossa Senhora uma Rosa. Cada clique é um gesto de amor que sobe ao céu como um perfume, testemunhando nossa devoção a Ela e o carinho que nos une.
+                </p>
 
-                        <div id="intentions" class="tab-content">
-                <h4>Intenções de Oração:</h4>
-                <ul id="intentionsList" class="prayer-list">
-                    <li>Pelo Santo Padre</li>
-                    <li>Pelas nossas famílias e saúde.</li>
-                </ul>
-                
-                <div class="add-intention-container">
-                    <input type="text" id="newIntentionInput" placeholder="Adicionar nova intenção..." maxlength="50">
-                    <button id="addIntentionButton" class="count-button">Adicionar</button>
-                </div>
-            </div>
-        </div> 
-    </div> 
-    
-    <script src="script.js"></script>
+                <div class="counter-container">
+                    <div class="counter-box">
+                        <span>João:</span> <span id="joaoCount" class="count-number">0</span>
+                        <div class="rose-controls">
+                            <button class="count-button" data-person="joao">Rezei!</button>
+                            <button class="decrease-button" data-person="joao">Menos Flor ⬇️</button>
+                        </div>
+                    </div>
+                    <div class="counter-box">
+                        <span>Vitória:</span> <span id="vitoriaCount" class="count-number">0</span>
+                        <div class="rose-controls">
+                            <button class="count-button" data-person="vitoria">Rezei!</button>
+                            <button class="decrease-button" data-person="vitoria">Menos Flor ⬇️</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="rosesDisplay" class="total-roses" style="text-align:center; margin-top:30px;">
+                    Total de Rosas: <span id="totalRoses">0</span> 
+                    <div id="roseIcons" style="margin-top:10px;"></div>
+                </div>
+
+            </div>
+
+            <div id="intentions" class="tab-content">
+                <h4>Intenções de Oração:</h4>
+                <ul id="intentionsList" class="prayer-list">
+                    <li>Pelo Santo Padre</li>
+                    <li>Pelas nossas famílias e saúde.</li>
+                </ul>
+                
+                <div class="add-intention-container">
+                    <input type="text" id="newIntentionInput" placeholder="Adicionar nova intenção..." maxlength="50">
+                    <button id="addIntentionButton" class="count-button">Adicionar</button>
+                </div>
+            </div>
+        </div> 
+    </div> 
+    
+    <script src="script.js"></script>
 </body>
 </html>

@@ -279,6 +279,10 @@ body {
 }
 
 .prayer-list li {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: rgba(173, 216, 230, 0.2);
     padding: 8px 15px;
     margin: 5px 0;
@@ -288,6 +292,22 @@ body {
     font-family: sans-serif;
     font-size: 1rem;
     transition: background-color 0.3s;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #dc143c;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0 5px;
+    margin-left: 10px;
+    transition: transform 0.1s;
+}
+
+.delete-btn:hover {
+    transform: scale(1.2);
 }
 
 .tabs-container {
@@ -359,9 +379,15 @@ body {
     text-shadow: 0 0 5px rgba(65, 105, 225, 0.5);
 }
 
-.count-button {
-    background: linear-gradient(45deg, #ffc0cb, #ff69b4);
-    color: white;
+.rose-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.count-button,
+.decrease-button {
     border: none;
     padding: 8px 15px;
     border-radius: 20px;
@@ -371,9 +397,26 @@ body {
     transition: background 0.3s, transform 0.2s;
 }
 
+.count-button {
+    background: linear-gradient(45deg, #ffc0cb, #ff69b4);
+    color: white;
+}
+
 .count-button:hover {
     transform: scale(1.05);
     box-shadow: 0 0 8px rgba(255, 105, 180, 0.8);
+}
+
+.decrease-button {
+    background: linear-gradient(45deg, #b0c4de, #add8e6);
+    color: #000080;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+}
+
+.decrease-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgba(65, 105, 225, 0.5);
 }
 
 .total-roses {
@@ -388,7 +431,8 @@ body {
     gap: 10px;
 }
 
-#newIntentionInput, #newPrayerInput {
+#newIntentionInput,
+#newPrayerInput {
     flex-grow: 1;
     padding: 10px;
     border-radius: 10px;
@@ -408,4 +452,64 @@ body {
     0% { transform: scale(0) rotate(0deg); opacity: 0; }
     50% { transform: scale(1.2) rotate(30deg); opacity: 1; }
     100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* --- ESTILOS DA CAIXINHA DE SURPRESAS --- */
+#surpriseBoxArea {
+    width: 100%;
+    margin-top: 30px;
+    padding: 20px;
+    border-top: 2px solid #add8e6;
+    text-align: center;
+    display: none;
+}
+
+#surpriseCardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.surprise-card {
+    width: 45%;
+    max-width: 180px;
+    padding: 15px;
+    background-color: #fffacd;
+    color: #4169e1;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+}
+
+.surprise-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 6px 12px rgba(255, 215, 0, 0.5);
+}
+
+.surprise-card h4 {
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-family: 'Pacifico', cursive;
+}
+
+.surprise-card p {
+    font-size: 0.85rem;
+    font-family: sans-serif;
+    color: #000080;
+}
+
+/* Área de conteúdo específica da surpresa */
+#boxContent {
+    margin-top: 30px;
+    padding: 20px;
+    border: 2px solid #ffd700;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    text-align: left;
+    display: none;
 }
