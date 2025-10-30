@@ -32,6 +32,11 @@ const surpriseCards = document.querySelectorAll('.surprise-card');
 const boxContent = document.getElementById('boxContent');
 
 
+// --- VARIÁVEIS GLOBAIS PARA CONTEÚDO ALEATÓRIO (SORRIR) ---
+let currentSurpriseContent = null;
+let currentContentIndex = -1;
+
+
 // --- FUNÇÕES DE PERSISTÊNCIA (localStorage) ---
 
 let joaoCount = parseInt(localStorage.getItem('joaoRoses')) || 0;
@@ -300,7 +305,56 @@ addIntentionButton.addEventListener('click', () => {
 });
 
 
-// --- LÓGICA DA CAIXINHA DE SURPRESAS ---
+// --- FUNÇÃO PARA CONTEÚDO ALEATÓRIO (SORRIR) ---
+function showRandomContent(content, forceIndex = -1) {
+    // Inicializa ou garante que o conteúdo é do tipo random_content
+    if (content.type !== "random_content") return;
+    
+    currentSurpriseContent = content; // Armazena o objeto completo
+    
+    // 1. Sorteia ou usa o índice forçado
+    if (forceIndex === -1 || currentContentIndex === -1) {
+        // Primeira abertura ou clique no botão
+        currentContentIndex = Math.floor(Math.random() * content.contentList.length);
+    } else {
+        // Usa o índice que foi passado pela chamada (para manter o conteúdo ao fechar/abrir)
+        currentContentIndex = forceIndex;
+    }
+    
+    const randomItem = content.contentList[currentContentIndex];
+
+    // 2. Cria o HTML de exibição com o botão de troca
+    boxContent.innerHTML = `
+        <h4 style="color:${content.color}; font-size:1.4rem; text-align:center; margin-bottom: 5px;">${content.title}</h4>
+        <p style="text-align:center; font-style: italic; color:#888;">Categoria: ${randomItem.category} ${randomItem.emoji}</p>
+        
+        <hr style="border: 0; height: 1px; background: ${content.color}; margin: 15px 0;">
+        
+        <p style="color:#333; font-family:sans-serif; white-space: pre-wrap; font-size: 1.15rem; text-align:center; padding: 10px;">
+            ${randomItem.text}
+        </p>
+        
+        <div style="text-align:center; margin-top: 25px;">
+            <button id="nextSurpriseButton" style="padding: 10px 20px; background-color: ${content.color}; color: black; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background-color 0.2s, transform 0.1s;">
+                Quero Mais! 👉
+            </button>
+        </div>
+    `;
+    
+    boxContent.style.display = 'block';
+    
+    // 3. Adiciona o Event Listener para o botão de troca
+    const nextButton = document.getElementById('nextSurpriseButton');
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            // Chama a função novamente, forçando um novo sorteio
+            showRandomContent(content, -1);
+        });
+    }
+
+    boxContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 
 // 2. Conteúdo de todas as caixinhas (Atualizado para incluir todas as 12)
 const surpriseContent = {
@@ -310,10 +364,101 @@ const surpriseContent = {
         color: "#4682b4" // Azul Aço
     },
     sorrir: {
-        title: "Dose de Gargalhadas 😂",
-        text: "Em breve...",
-        color: "#ffd700" // Dourado
-    },
+    title: "Dose de Gargalhadas 😂",
+    color: "#ffd700", // Dourado
+    type: "random_content", // Indica que esta caixinha usa a lógica de sorteio
+    contentList: [
+        // PIADAS DE TIOZÃO (5)
+        {
+            text: "O que o pato disse para a pata? Vem Quá! 😂",
+            category: "Tiozão",
+            emoji: "👴"
+        },
+        {
+            text: "Por que o pinheiro não se perde na floresta? Porque ele tem uma pinha (mapa)! 🌲",
+            category: "Tiozão",
+            emoji: "🤦"
+        },
+        {
+            text: "Qual é o doce preferido do átomo? Pé-de-molécula! 🍬",
+            category: "Tiozão",
+            emoji: "🧪"
+        },
+        {
+            text: "Qual a cidade brasileira que não tem táxi? Uberlândia! 🚕",
+            category: "Tiozão",
+            emoji: "🇧🇷"
+        },
+        {
+            text: "Como se chama a pessoa que viu o Thor de perto? Vi-Thor",
+            category: "Tiozão",
+            emoji: "🍽️"
+        },
+        // PIADAS ELABORADAS/BOAS (5)
+        {
+            text: "Por que a velhinha não usa relógio? Porque ela é sem hora (senhora)",
+            category: "Boa",
+            emoji: "🤣"
+        },
+        {
+            text: "Um homem vai ao médico e diz que está deprimido. A vida parece dura, cruel. O médico diz: 'O grande comediante Pagliacci está na cidade. Vá vê-lo. Isso deve animá-lo.' O homem começa a chorar: 'Mas doutor... eu sou Pagliacci.'",
+            category: "Boa",
+            emoji: "🎭"
+        },
+        {
+            text: "Por que o astronauta se separou? Porque deu um vácuo na esposa!",
+            category: "Boa",
+            emoji: "🚀"
+        },
+        {
+            text: "Doutor, como eu faço para emagrecer? Basta a senhora mover a cabeça da esquerda para a direita e da direita para a esquerda. Quantas vezes, doutor?  Todas as vezes que lhe oferecerem comida.",
+            category: "Boa",
+            emoji: "🌳"
+        },
+        {
+            text: "Fui comprar um remédio e o farmacêutico perguntou se eu tinha receita. Respondi que se eu tivesse a receita, faria o remédio em casa.",
+            category: "Boa",
+            emoji: "🌌"
+        },
+        // CANTADAS FOFAS (5)
+        {
+            text: "O seu sorriso parece ter a capacidade de consertar qualquer dia ruim.",
+            category: "Cantada Fofa",
+            emoji: "💖"
+        },
+        {
+            text: "Você é tipo o pôr do sol: impossível de olhar sem sorrir.",
+            category: "Cantada Fofa",
+            emoji: "🪐"
+        },
+        {
+            text: "Você tem um mapa? Porque acabei de me perder nos seus olhos. 👀",
+            category: "Cantada Fofa",
+            emoji: "🗺️"
+        },
+        {
+            text: "Dizem que o amor é a coisa mais linda, mas nunca viram o seu sorriso. 😊",
+            category: "Cantada Fofa",
+            emoji: "😇"
+        },
+        {
+            text: "Quando você ri, parece que o tempo tira um descanso pra apreciar também. Olha ai ele parando pra te ver agora",
+            category: "Cantada Fofa",
+            emoji: "💘"
+        },
+        // CANTADAS RUINS QUE SÃO BOAS (5)
+        {
+            text: "Eu não sou fotógrafo, mas posso te enquadrar na minha vida fácil.",
+            category: "Cantada Ruim-Boa",
+            emoji: "💻"
+        },
+        {
+            text: "Se eu fosse o clima, eu virava primavera só pra te ver florescer.",
+            category: "Cantada Ruim-Boa",
+            emoji: "🔨"
+        }
+    ]
+},
     historia: {
         title: "A História do Nosso 'Era uma vez...' 📖",
         text: "Em breve...",
@@ -343,7 +488,7 @@ const surpriseContent = {
         title: "Vamos Dançar! 💃🕺",
         text: "Coloque esta música . Mesmo longe, sinta-se dançando comigo. Feche os olhos, sorria e deixe a batida te levar. Nosso amor é a melhor coreografia! ",
         color: "#ff8c00", // Laranja Escuro
-        spotifyLink: "https://open.spotify.com/playlist/1YyUil7xNDJUuNxHfOhOKk",
+        spotifyLink: "https://open.spotify.com/playlist/1YyUil7xNDJUuNxHfOhOKk", // **MUDAR ESTE LINK!**
         actionMessage: "Preparei algo pra você ai acho que vai gostar"
     },
     carinho: {
@@ -375,11 +520,21 @@ surpriseCards.forEach(card => {
         const content = surpriseContent[boxId];
         
         if (content) {
-            // Se for do tipo random_content (o 'sorrir')
-            if (content.type === "random_content") {
-                showRandomContent(content);
+            
+            // === TRATAMENTO PARA CAIXINHA "SORRIR" (Conteúdo Aleatório) ===
+            if (boxId === "sorrir" && content.type === "random_content") {
+                let indexToDisplay = -1; // -1 força um novo sorteio
+                
+                // Se a caixinha estava aberta e sendo exibida...
+                if (boxContent.style.display === 'block' && currentSurpriseContent && currentSurpriseContent.type === "random_content") {
+                    // Reutiliza o índice atual (mantém a mensagem)
+                    indexToDisplay = currentContentIndex;
+                }
+
+                showRandomContent(content, indexToDisplay);
                 return; 
             }
+            // =============================================================
             
             // --- INÍCIO: TRATAMENTO PARA CARTÕES PADRÃO (e o DA DANÇA) ---
             
@@ -418,7 +573,6 @@ surpriseCards.forEach(card => {
         }
     });
 });
-
 
 
 // --- INICIALIZAÇÃO ---
